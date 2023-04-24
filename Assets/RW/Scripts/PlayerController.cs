@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D playerRigidbody;
     public float forwardMovementSpeed = 5.0f;
 
+    public Animator ani;
+
     void Start()
     {
         playerRigidbody = GetComponent<Rigidbody2D>();
@@ -16,7 +18,15 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        bool jetpackActive = Input.GetKey("space");
+        if (jetpackActive)
+        {
+            ani.SetBool("Grounded", false);
+        }
+        else
+        {
+            ani.SetBool("Grounded", true);
+        }
     }
 
     void FixedUpdate() 
