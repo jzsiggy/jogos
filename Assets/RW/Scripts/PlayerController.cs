@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -31,6 +32,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate() 
     {
+        forwardMovementSpeed = forwardMovementSpeed + 0.01f;
         Vector2 newVelocity = playerRigidbody.velocity;
         newVelocity.x = forwardMovementSpeed;
         playerRigidbody.velocity = newVelocity;
@@ -40,5 +42,27 @@ public class PlayerController : MonoBehaviour
         {
             playerRigidbody.AddForce(new Vector2(0, jetpackForce));
         }
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Enemy"))
+        {
+            Die();
+        }
+
+        if (collision.collider.CompareTag("PowerUp"))
+        {
+            collision.gameObject.GetComponent<Collider2D>().enabled = false;
+            collision.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            forwardMovementSpeed = forwardMovementSpeed - 2f;
+        }
+    }
+
+    void Die()
+    {
+        // Your player death logic, like playing a death animation or sound effect
+        // Example: Restart the current scene
+        SceneManager.LoadScene("MainMenu");
     }
 }

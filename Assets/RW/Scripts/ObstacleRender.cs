@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ObstacleRender : MonoBehaviour
 {
-    public GameObject obstacle;
+    public GameObject[] availableObstacles;
     public List<GameObject> renderedObstacles;
 
     public float obstacleMinY = -5f;
@@ -22,10 +22,12 @@ public class ObstacleRender : MonoBehaviour
 
     void AddObject()
     {
-        GameObject obj = (GameObject)Instantiate(obstacle);
+        int i = Random.Range(0, availableObstacles.Length);
+        GameObject obj = (GameObject)Instantiate(availableObstacles[i]);
         float x = transform.position.x + 20f;
         float randomY = Random.Range(obstacleMinY, obstacleMaxY);
         obj.transform.position = new Vector3(x,randomY,0);    
+        obj.transform.localScale = new Vector3(1, 2, 1);
         renderedObstacles.Add(obj);        
     }
 
