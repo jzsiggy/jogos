@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3108194000091984810}
   - component: {fileID: 5289815648959299300}
-  - component: {fileID: -8071609127595782524}
+  - component: {fileID: -7982595959411768400}
+  - component: {fileID: -2569521338365046575}
   m_Layer: 0
   m_Name: PowerUp
   m_TagString: PowerUp
@@ -27,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 8224676282859471533}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 10.240652, y: 1.610856, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -75,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -1778536934, guid: 86eec6ff015f3264c9e00e8aef9c5afe, type: 3}
-  m_Color: {r: 1, g: 0, b: 0.8064232, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -85,8 +86,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &-8071609127595782524
-BoxCollider2D:
+--- !u!60 &-7982595959411768400
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -108,6 +109,31 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.065, y: 0.42999998}
+      - {x: -0.185, y: 0.42999998}
+      - {x: -0.185, y: -0.45}
+      - {x: 0.13499999, y: -0.45}
+      - {x: 0.155, y: -0.14}
+      - {x: 0.155, y: 0.37}
+--- !u!95 &-2569521338365046575
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8224676282859471533}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 365196b2b0c1fbe4fb0430db8381f413, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
