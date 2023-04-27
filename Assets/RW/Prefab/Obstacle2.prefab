@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2112403491278655538}
   - component: {fileID: 6762995491124230894}
-  - component: {fileID: -8575646651880735762}
   - component: {fileID: -2580300256455657515}
+  - component: {fileID: 4444985256911380525}
+  - component: {fileID: -376602273842292369}
   m_Layer: 0
   m_Name: Obstacle2
   m_TagString: Enemy
@@ -28,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 268854594757980083}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 10.240652, y: 1.610856, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -86,8 +87,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &-8575646651880735762
-BoxCollider2D:
+--- !u!114 &-2580300256455657515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 268854594757980083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24d3915c3c4d24297b038d98048df088, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2
+  distance: 2
+  moveUp: 1
+--- !u!60 &4444985256911380525
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -109,21 +125,35 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
---- !u!114 &-2580300256455657515
-MonoBehaviour:
+  m_Points:
+    m_Paths:
+    - - {x: 0.085, y: 0.21}
+      - {x: 0.055, y: 0.22}
+      - {x: -0.085, y: 0.22}
+      - {x: -0.125, y: 0.16}
+      - {x: -0.195, y: 0}
+      - {x: -0.195, y: -0.12}
+      - {x: -0.105, y: -0.24}
+      - {x: 0.085, y: -0.24}
+      - {x: 0.195, y: -0.12}
+      - {x: 0.195, y: -0.01}
+--- !u!95 &-376602273842292369
+Animator:
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 268854594757980083}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24d3915c3c4d24297b038d98048df088, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 2
-  distance: 2
-  moveUp: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d91bdfe76686ca94a95f293b616a90c3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0

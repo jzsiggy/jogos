@@ -27,7 +27,7 @@ public class ObstacleRender : MonoBehaviour
         float x = transform.position.x + 20f;
         float randomY = Random.Range(obstacleMinY, obstacleMaxY);
         obj.transform.position = new Vector3(x,randomY,0);    
-        obj.transform.localScale = new Vector3(1, 2, 1);
+        //obj.transform.localScale = new Vector3(1, 2, 1);
         renderedObstacles.Add(obj);        
     }
 

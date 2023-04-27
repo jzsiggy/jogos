@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1639670479548688926}
   - component: {fileID: 5882156732026114454}
-  - component: {fileID: -2073739923705215528}
   - component: {fileID: 1436144993054403533}
+  - component: {fileID: 5033930296319162296}
+  - component: {fileID: -926052628692941269}
   m_Layer: 0
   m_Name: Obstacle
   m_TagString: Enemy
@@ -28,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 1728401402162263581}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -86,8 +87,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &-2073739923705215528
-BoxCollider2D:
+--- !u!114 &1436144993054403533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1728401402162263581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f40de23409e4cac4b919e24151109090, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 7674984141642085009, guid: 2cea7e3ada0c7d24294c935877912774, type: 3}
+  fireRate: 1
+  bulletSpeed: 5
+  bulletLifetime: 5
+--- !u!60 &5033930296319162296
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -109,22 +126,40 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
---- !u!114 &1436144993054403533
-MonoBehaviour:
+  m_Points:
+    m_Paths:
+    - - {x: 0.14999999, y: -0.21499999}
+      - {x: 0.12, y: -0.114999995}
+      - {x: 0.16, y: -0.055}
+      - {x: 0.16, y: 0.015}
+      - {x: 0.07, y: 0.255}
+      - {x: -0.08, y: 0.255}
+      - {x: -0.089999996, y: 0.235}
+      - {x: -0.16, y: 0.055}
+      - {x: -0.16, y: -0.095}
+      - {x: -0.11, y: -0.24499999}
+      - {x: -0.02, y: -0.24499999}
+      - {x: 0, y: -0.235}
+      - {x: 0.08, y: -0.24499999}
+      - {x: 0.13, y: -0.24499999}
+      - {x: 0.14999999, y: -0.225}
+--- !u!95 &-926052628692941269
+Animator:
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1728401402162263581}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f40de23409e4cac4b919e24151109090, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 7674984141642085009, guid: 2cea7e3ada0c7d24294c935877912774, type: 3}
-  fireRate: 1
-  bulletSpeed: 5
-  bulletLifetime: 5
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9aa3e3bc20054af47b928257a976c930, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0

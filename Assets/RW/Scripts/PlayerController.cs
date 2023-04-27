@@ -61,6 +61,12 @@ public class PlayerController : MonoBehaviour
 
     public void Die()
     {
+        // Reset the score
+        ScoreManager scoreManager = FindObjectOfType<ScoreManager>();
+        if (scoreManager != null)
+        {
+            scoreManager.ResetScore();
+        }
         // Your player death logic, like playing a death animation or sound effect
         // Example: Restart the current scene
         SceneManager.LoadScene("MainMenu");
