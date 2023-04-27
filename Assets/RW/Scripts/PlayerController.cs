@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void Die()
+    public void Die()
     {
         // Your player death logic, like playing a death animation or sound effect
         // Example: Restart the current scene
