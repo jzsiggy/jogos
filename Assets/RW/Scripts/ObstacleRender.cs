@@ -20,16 +20,53 @@ public class ObstacleRender : MonoBehaviour
         StartCoroutine(GeneratorCheck());
     }
 
+    bool PositionIsValid(Vector3 position, float radius)
+    {
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(position, radius);
+        return hitColliders.Length == 0;
+    }
+
+
     void AddObject()
     {
         int i = Random.Range(0, availableObstacles.Length);
-        GameObject obj = (GameObject)Instantiate(availableObstacles[i]);
         float x = transform.position.x + 20f;
         float randomY = Random.Range(obstacleMinY, obstacleMaxY);
-        obj.transform.position = new Vector3(x,randomY,0);    
-        //obj.transform.localScale = new Vector3(1, 2, 1);
-        renderedObstacles.Add(obj);        
+        Vector3 position = new Vector3(x, randomY, 0);
+
+        if (PositionIsValid(position, 1.0f))
+        {
+            GameObject obj = (GameObject)Instantiate(availableObstacles[i]);
+            obj.transform.position = position;
+            renderedObstacles.Add(obj);
+        }
     }
+
+    void RemoveOffscreenObjects()
+    {
+        float playerX = transform.position.x;
+        float removeObjectsX = playerX - screenWidthInPoints;
+
+        List<GameObject> objectsToRemove = new List<GameObject>();
+
+        foreach (var obj in renderedObstacles)
+        {
+            float objX = obj.transform.position.x;
+            if (objX < removeObjectsX)
+            {
+                objectsToRemove.Add(obj);
+            }
+        }
+
+        foreach (var obj in objectsToRemove)
+        {
+            renderedObstacles.Remove(obj);
+            Destroy(obj);
+        }
+    }
+
+
+
 
     void GenerateObjectsIfRequired()
     {
@@ -59,11 +96,12 @@ public class ObstacleRender : MonoBehaviour
     {
         while (true)
         {
-            // AddObject();
             GenerateObjectsIfRequired();
+            RemoveOffscreenObjects(); // Add this line
             yield return new WaitForSeconds(2.25f);
         }
     }
+
 
     // Update is called once per frame
     void Update()

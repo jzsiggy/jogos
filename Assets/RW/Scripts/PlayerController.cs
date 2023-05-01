@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public float jetpackForce = 75.0f;
     private Rigidbody2D playerRigidbody;
     public float forwardMovementSpeed = 5.0f;
+    public int pointsToAdd = 50;
 
     public Animator ani;
 
@@ -57,6 +58,15 @@ public class PlayerController : MonoBehaviour
             collision.gameObject.GetComponent<SpriteRenderer>().enabled = false;
             forwardMovementSpeed = forwardMovementSpeed - 2f;
         }
+
+        if (collision.collider.CompareTag("PowerUp2"))
+        {
+            collision.gameObject.GetComponent<Collider2D>().enabled = false;
+            collision.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            ScoreManager.score += pointsToAdd;
+        }
+
+
     }
 
     public void Die()
