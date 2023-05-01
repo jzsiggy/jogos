@@ -6,7 +6,6 @@ using UnityEngine.EventSystems;
 public class MenuManager : MonoBehaviour{
     public Button startButton;
     public EventSystem eventSystem;
-    public AudioManager audioManager;
 
     private bool sceneStarted = true;
 
@@ -24,20 +23,29 @@ public class MenuManager : MonoBehaviour{
 
         if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
         {
-            Button selectedButton = eventSystem.currentSelectedGameObject.GetComponent<Button>();
-            if (selectedButton != null)
+            if (eventSystem.currentSelectedGameObject != null)
             {
-                selectedButton.onClick.Invoke();
+                Button selectedButton = eventSystem.currentSelectedGameObject.GetComponent<Button>();
+                if (selectedButton != null)
+                {
+                    selectedButton.onClick.Invoke();
+                }
             }
         }
     }
 
     public void StartGame()
     {
-        audioManager.StopMainMenuMusic();
         eventSystem.enabled = false;
-        SceneManager.LoadScene("Game");
-    }
+        if (ScoreManager.highScore == 0)
+        {
+            SceneManager.LoadScene("Tutorial");
+        }
+        else
+        {
+            SceneManager.LoadScene("Game");
+        }
+    }  
 
     public void Options()
     {

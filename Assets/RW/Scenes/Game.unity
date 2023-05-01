@@ -1254,6 +1254,8 @@ MonoBehaviour:
   forwardMovementSpeed: 3
   pointsToAdd: 50
   ani: {fileID: 1165452886}
+  deathSound: {fileID: 8300000, guid: 29be77055cdc4ae428c0ec824b14cbd0, type: 3}
+  coinSound: {fileID: 8300000, guid: 48348dc2af6a71d40ae75728e978fe66, type: 3}
 --- !u!114 &1165452885
 MonoBehaviour:
   m_ObjectHideFlags: 0

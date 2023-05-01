@@ -1,26 +1,52 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
     public float jetpackForce = 75.0f;
-    private Rigidbody2D playerRigidbody;
     public float forwardMovementSpeed = 5.0f;
     public int pointsToAdd = 50;
 
     public Animator ani;
+    public AudioClip deathSound;
+    public AudioClip coinSound;
+
+    private KeyCode jumpKey;
+    private Rigidbody2D playerRigidbody;
 
     void Start()
     {
         playerRigidbody = GetComponent<Rigidbody2D>();
+        UpdateKeyBindings();
+    }
+
+    public void UpdateKeyBindings()
+    {
+        if (SceneManager.GetActiveScene().name == "Game")
+        {
+            jumpKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("JumpKey", "Space"));
+        }
+        else if (SceneManager.GetActiveScene().name == "Options")
+        {
+            SceneManager.LoadScene("Options", LoadSceneMode.Single);
+            var keyBindingManagerObject = GameObject.Find("KeyBindingManager");
+            if (keyBindingManagerObject != null)
+            {
+                KeyBindingManager keyBindingManager = keyBindingManagerObject.GetComponent<KeyBindingManager>();
+                keyBindingManager.UpdateKeyTexts();
+            }
+        }
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        bool jetpackActive = Input.GetKey("space");
+        var keyboard = Keyboard.current;
+        bool jetpackActive = Input.GetKey(jumpKey);
         if (jetpackActive)
         {
             ani.SetBool("Grounded", false);
@@ -31,14 +57,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void FixedUpdate() 
+    void FixedUpdate()
     {
         forwardMovementSpeed = forwardMovementSpeed + 0.01f;
         Vector2 newVelocity = playerRigidbody.velocity;
         newVelocity.x = forwardMovementSpeed;
         playerRigidbody.velocity = newVelocity;
 
-        bool jetpackActive = Input.GetKey("space");
+        bool jetpackActive = Input.GetKey(jumpKey);
         if (jetpackActive)
         {
             playerRigidbody.AddForce(new Vector2(0, jetpackForce));
@@ -54,6 +80,7 @@ public class PlayerController : MonoBehaviour
 
         if (collision.collider.CompareTag("PowerUp"))
         {
+            AudioManager.Instance.PlayCollectibleSound(coinSound);
             collision.gameObject.GetComponent<Collider2D>().enabled = false;
             collision.gameObject.GetComponent<SpriteRenderer>().enabled = false;
             forwardMovementSpeed = forwardMovementSpeed - 2f;
@@ -71,14 +98,14 @@ public class PlayerController : MonoBehaviour
 
     public void Die()
     {
+        AudioManager.Instance.PlaySFX(deathSound);
         // Reset the score
         ScoreManager scoreManager = FindObjectOfType<ScoreManager>();
         if (scoreManager != null)
         {
             scoreManager.ResetScore();
         }
-        // Your player death logic, like playing a death animation or sound effect
-        // Example: Restart the current scene
-        SceneManager.LoadScene("MainMenu");
+        AudioManager.Instance.PlayDeathMusic();
+        SceneManager.LoadScene("GameOver");
     }
 }
