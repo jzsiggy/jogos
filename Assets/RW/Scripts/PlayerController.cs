@@ -80,7 +80,7 @@ public class PlayerController : MonoBehaviour
 
         if (collision.collider.CompareTag("PowerUp"))
         {
-            AudioManager.Instance.PlayCollectibleSound(coinSound);
+            
             collision.gameObject.GetComponent<Collider2D>().enabled = false;
             collision.gameObject.GetComponent<SpriteRenderer>().enabled = false;
             forwardMovementSpeed = forwardMovementSpeed - 2f;
@@ -88,6 +88,7 @@ public class PlayerController : MonoBehaviour
 
         if (collision.collider.CompareTag("PowerUp2"))
         {
+            AudioManager.Instance.PlayCollectibleSound(coinSound);
             collision.gameObject.GetComponent<Collider2D>().enabled = false;
             collision.gameObject.GetComponent<SpriteRenderer>().enabled = false;
             ScoreManager.score += pointsToAdd;
@@ -98,14 +99,14 @@ public class PlayerController : MonoBehaviour
 
     public void Die()
     {
-        AudioManager.Instance.PlaySFX(deathSound);
-        // Reset the score
+        SceneManager.LoadScene("GameOver");
         ScoreManager scoreManager = FindObjectOfType<ScoreManager>();
         if (scoreManager != null)
         {
             scoreManager.ResetScore();
         }
+        AudioManager.Instance.PlaySFX(deathSound);
         AudioManager.Instance.PlayDeathMusic();
-        SceneManager.LoadScene("GameOver");
+        
     }
 }
