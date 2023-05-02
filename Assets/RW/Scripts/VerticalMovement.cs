@@ -17,11 +17,11 @@ public class VerticalMovement : MonoBehaviour
     {
         if (moveUp)
         {
-            transform.position = new Vector3(transform.position.x, startPos.y + Mathf.PingPong(Time.time * speed, distance), transform.position.z);
+            transform.position = new Vector3(transform.position.x, Mathf.Min(4.3f, startPos.y + Mathf.PingPong(Time.time * speed, distance)), transform.position.z);
         }
         else
         {
-            transform.position = new Vector3(transform.position.x, startPos.y - Mathf.PingPong(Time.time * speed, distance), transform.position.z);
+            transform.position = new Vector3(transform.position.x, Mathf.Max(-4.3f, startPos.y - Mathf.PingPong(Time.time * speed, distance)), transform.position.z);
         }
     }
 }

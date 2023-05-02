@@ -24,7 +24,7 @@ public class ScoreManager : MonoBehaviour
     {
         timeSinceLastScoreUpdate += Time.deltaTime;
 
-        if (timeSinceLastScoreUpdate >= 1f)
+        if (timeSinceLastScoreUpdate >= 0.1f)
         {
             IncreaseScore((int)scoreIncreaseRate);
             timeSinceLastScoreUpdate = 0f;

@@ -7,8 +7,12 @@ public class ObstacleRender : MonoBehaviour
     public GameObject[] availableObstacles;
     public List<GameObject> renderedObstacles;
 
-    public float obstacleMinY = -5f;
-    public float obstacleMaxY = 5f;
+    public float initialSpawnInterval = 2.25f;
+    public float spawnIntervalDecrease = 0.1f;
+    public float minimumSpawnInterval = 0.5f;
+
+    public float obstacleMinY = -4.2f;
+    public float obstacleMaxY = 4.2f;
 
     private float screenWidthInPoints;
 
@@ -98,7 +102,8 @@ public class ObstacleRender : MonoBehaviour
         {
             GenerateObjectsIfRequired();
             RemoveOffscreenObjects(); // Add this line
-            yield return new WaitForSeconds(2.25f);
+            yield return new WaitForSeconds(initialSpawnInterval);
+            initialSpawnInterval = Mathf.Max(initialSpawnInterval-spawnIntervalDecrease, minimumSpawnInterval);
         }
     }
 
