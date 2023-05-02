@@ -48,7 +48,7 @@ public class ButtonPulseEffect : MonoBehaviour, ISelectHandler, IDeselectHandler
     }
 
     public void OnSelect(BaseEventData eventData)
-    {
+    { 
         isSelected = true;
         rectTransform.localScale = new Vector3(maxScale, maxScale, rectTransform.localScale.z);
 

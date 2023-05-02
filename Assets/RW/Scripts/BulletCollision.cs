@@ -10,10 +10,8 @@ public class BulletCollision : MonoBehaviour
     {
         if (collision.gameObject.CompareTag(playerTag))
         {
-            // Insert player death logic here
             collision.gameObject.GetComponent<PlayerController>().Die();
 
-            // Destroy bullet after hitting the player
             Destroy(gameObject);
         }
     }

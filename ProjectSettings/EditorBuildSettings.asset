@@ -9,6 +9,15 @@ EditorBuildSettings:
     path: Assets/RW/Scenes/MainMenu.unity
     guid: 518f9aa6b5552e7449f0c05917513e11
   - enabled: 1
+    path: Assets/RW/Scenes/OptionsMenu.unity
+    guid: 98550c977fe302f49a9e80d3eda65826
+  - enabled: 1
     path: Assets/RW/Scenes/Game.unity
     guid: 8029beba8bd5d49f08c46171b9160e2e
+  - enabled: 1
+    path: Assets/RW/Scenes/GameOver.unity
+    guid: 0500370a7e1755d4997467236a0a47cb
+  - enabled: 1
+    path: Assets/RW/Scenes/Tutorial.unity
+    guid: dfa11f0f617cbf34989daaa2c2ccd5b6
   m_configObjects: {}
