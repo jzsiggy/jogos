@@ -15,38 +15,17 @@ public class PlayerController : MonoBehaviour
     public AudioClip deathSound;
     public AudioClip coinSound;
 
-    private KeyCode jumpKey;
     private Rigidbody2D playerRigidbody;
 
     void Start()
     {
         playerRigidbody = GetComponent<Rigidbody2D>();
-        UpdateKeyBindings();
-    }
-
-    public void UpdateKeyBindings()
-    {
-        if (SceneManager.GetActiveScene().name == "Game")
-        {
-            jumpKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("JumpKey", "Space"));
-        }
-        else if (SceneManager.GetActiveScene().name == "Options")
-        {
-            SceneManager.LoadScene("Options", LoadSceneMode.Single);
-            var keyBindingManagerObject = GameObject.Find("KeyBindingManager");
-            if (keyBindingManagerObject != null)
-            {
-                KeyBindingManager keyBindingManager = keyBindingManagerObject.GetComponent<KeyBindingManager>();
-                keyBindingManager.UpdateKeyTexts();
-            }
-        }
     }
 
     // Update is called once per frame
     private void Update()
     {
-        var keyboard = Keyboard.current;
-        bool jetpackActive = Input.GetKey(jumpKey);
+        bool jetpackActive = Touchscreen.current.primaryTouch.press.isPressed;
         if (jetpackActive)
         {
             ani.SetBool("Grounded", false);
@@ -64,7 +43,7 @@ public class PlayerController : MonoBehaviour
         newVelocity.x = forwardMovementSpeed;
         playerRigidbody.velocity = newVelocity;
 
-        bool jetpackActive = Input.GetKey(jumpKey);
+        bool jetpackActive = Touchscreen.current.primaryTouch.press.isPressed;
         if (jetpackActive)
         {
             playerRigidbody.AddForce(new Vector2(0, jetpackForce));
@@ -80,7 +59,6 @@ public class PlayerController : MonoBehaviour
 
         if (collision.collider.CompareTag("PowerUp"))
         {
-            
             collision.gameObject.GetComponent<Collider2D>().enabled = false;
             collision.gameObject.GetComponent<SpriteRenderer>().enabled = false;
             forwardMovementSpeed = forwardMovementSpeed - 2f;
@@ -93,8 +71,6 @@ public class PlayerController : MonoBehaviour
             collision.gameObject.GetComponent<SpriteRenderer>().enabled = false;
             ScoreManager.score += pointsToAdd;
         }
-
-
     }
 
     public void Die()
@@ -107,6 +83,5 @@ public class PlayerController : MonoBehaviour
         }
         AudioManager.Instance.PlaySFX(deathSound);
         AudioManager.Instance.PlayDeathMusic();
-        
     }
 }

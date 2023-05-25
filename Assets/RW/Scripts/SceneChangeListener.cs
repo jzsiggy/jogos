@@ -19,10 +19,7 @@ public class SceneChangeListener : MonoBehaviour
         if (scene.name == "Game")
         {
             PlayerController playerController = FindObjectOfType<PlayerController>(true);
-            if (playerController != null)
-            {
-                playerController.UpdateKeyBindings();
-            }
+            // Removed the call to playerController.UpdateKeyBindings();
         }
     }
 }

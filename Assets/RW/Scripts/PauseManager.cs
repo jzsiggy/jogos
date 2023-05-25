@@ -9,19 +9,15 @@ public class PauseManager : MonoBehaviour
     public static bool isGamePaused = false;
     public GameObject pauseMenuUI;
 
-    // Update is called once per frame
-    void Update()
+    public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (isGamePaused)
         {
-            if (isGamePaused)
-            {
-                Resume();
-            }
-            else
-            {
-                Pause();
-            }
+            Resume();
+        }
+        else
+        {
+            Pause();
         }
     }
 
@@ -41,12 +37,6 @@ public class PauseManager : MonoBehaviour
         pauseMenuCanvasGroup.interactable = true;
         pauseMenuCanvasGroup.blocksRaycasts = true;
     }
-
-    // public void LoadMenu()
-    // {
-    //     Time.timeScale = 1f;
-    //     SceneManager.LoadScene("Menu");
-    // }
 
     public void QuitGame()
     {

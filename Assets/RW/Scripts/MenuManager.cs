@@ -14,26 +14,6 @@ public class MenuManager : MonoBehaviour{
         eventSystem.SetSelectedGameObject(startButton.gameObject);
     }
 
-    private void Update()
-    {
-        if (sceneStarted && (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S)))
-        {
-            sceneStarted = false;
-        }
-
-        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
-        {
-            if (eventSystem.currentSelectedGameObject != null)
-            {
-                Button selectedButton = eventSystem.currentSelectedGameObject.GetComponent<Button>();
-                if (selectedButton != null)
-                {
-                    selectedButton.onClick.Invoke();
-                }
-            }
-        }
-    }
-
     public void StartGame()
     {
         eventSystem.enabled = false;

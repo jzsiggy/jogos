@@ -1,10 +1,8 @@
-// Script criado para fazer com que os botões do menu principal pulsem quando o usuario passa o mouse em cima deles
-
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ButtonPulseEffect : MonoBehaviour, ISelectHandler, IDeselectHandler
+public class ButtonPulseEffect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public float minScale = 0.9f;
     public float maxScale = 1.1f;
@@ -40,14 +38,9 @@ public class ButtonPulseEffect : MonoBehaviour, ISelectHandler, IDeselectHandler
                 rectTransform.localScale = new Vector3(newScaleX, newScaleY, rectTransform.localScale.z);
             }
         }
-
-        if (sceneStarted && (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S)))
-        {
-            sceneStarted = false;
-        }
     }
 
-    public void OnSelect(BaseEventData eventData)
+    public void OnPointerEnter(PointerEventData eventData)
     { 
         isSelected = true;
         rectTransform.localScale = new Vector3(maxScale, maxScale, rectTransform.localScale.z);
@@ -63,7 +56,7 @@ public class ButtonPulseEffect : MonoBehaviour, ISelectHandler, IDeselectHandler
         }
     }
 
-    public void OnDeselect(BaseEventData eventData)
+    public void OnPointerExit(PointerEventData eventData)
     {
         isSelected = false;
         rectTransform.localScale = new Vector3(minScale, minScale, rectTransform.localScale.z);
