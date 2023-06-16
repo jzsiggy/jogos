@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         var keyboard = Keyboard.current;
-        bool jetpackActive = Input.GetKey(jumpKey);
+        bool jetpackActive = Input.GetKey(jumpKey) || Input.touchCount > 0;
         if (jetpackActive)
         {
             ani.SetBool("Grounded", false);
@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
         newVelocity.x = forwardMovementSpeed;
         playerRigidbody.velocity = newVelocity;
 
-        bool jetpackActive = Input.GetKey(jumpKey);
+        bool jetpackActive = Input.GetKey(jumpKey) || Input.touchCount > 0;
         if (jetpackActive)
         {
             playerRigidbody.AddForce(new Vector2(0, jetpackForce));
